@@ -1,0 +1,10 @@
+table{
+    border: 1px solid #eeeeee;
+}
+.hp-label-success{
+    height: 16px;
+    border-radius: 8px;
+    line-height: 16px;
+    font-size: 12px;
+    text-transform: none;
+}

@@ -1,0 +1,46 @@
+
+<div class="container">
+  <table *ngIf="allTicketsWithSelectedTripId" mat-table [dataSource]="allTicketsWithSelectedTripId"
+    multiTemplateDataRows class="mat-elevation-z8">
+
+    <ng-container matColumnDef="ticketIdforAngular">
+      <th mat-header-cell *matHeaderCellDef> Seat Number </th>
+      <td mat-cell *matCellDef="let row"> {{row.numbSeatForAngular}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="ticketStatus">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let row"> {{row.ticketStatus? 'Available': 'Booked'}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="View">
+      <th mat-header-cell *matHeaderCellDef>Update Status <p> {{validDate? 'Ngay Hop Le':'Ngay Da Qua'}}</p> </th>
+      <td mat-cell *matCellDef="let row" >
+        <ng-container *ngIf="row.ticketStatus; else elseTemplate">
+            <a  *ngIf="validDate" class="uk-button uk-button-default"  href="#modal-{{row.ticketId}}" uk-toggle>{{row.ticketStatus? 'Book': 'Cancel'}}</a>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <a class="uk-button uk-button-primary"  href="#cancel-{{row.ticketId}}" uk-toggle>Cancel</a>
+
+            <!-- This is the modal -->
+            <div id="cancel-{{row.ticketId}}" uk-modal>
+                <div class="uk-modal-dialog uk-modal-body">
+                    <h2 class="uk-modal-title">Do you really wish to cancel this ticket? {{row.ticketId}}</h2>
+        
+                    <p class="uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                        <button class="uk-button uk-button-primary" type="button" (click)="cancelTicket(row.ticketId)">Save</button>
+                    </p>
+                </div>
+            </div>
+        </ng-template>
+        <app-updateseat [ticket]="row"></app-updateseat>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

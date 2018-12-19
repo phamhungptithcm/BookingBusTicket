@@ -1,0 +1,39 @@
+<div id="modal-{{ticket.ticketId}}" class="uk-flex-top" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+
+    <h1>
+      {{ticket.ticketId}}
+    </h1>
+    <form>
+
+      <div class="uk-margin">
+        <div> <label>User Name</label> </div>
+        <input  [(ngModel)]="username" name="username" class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="Username..." >
+      </div>
+    
+      <div class="uk-margin">
+        <div> <label>Departure Date</label></div>
+        <input name="firstName" value="{{myFormattedDate}}" disabled class="uk-input uk-form-width-medium uk-form-large" type="text">
+      </div>
+      <ng-container *ngIf="validUser; else elseTemplate">
+        <div class="uk-alert-success" uk-alert >
+          <a class="uk-alert-close" uk-close></a>
+          <p>User valid: {{something}}</p>
+      </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p>User is not available</p>
+      </div>
+      </ng-template>
+      
+      <button class="uk-button uk-button-primary" (click)="checkUser()">Check</button>
+      <div class="row ">
+        <button class="uk-modal-close" (click)="submit()">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

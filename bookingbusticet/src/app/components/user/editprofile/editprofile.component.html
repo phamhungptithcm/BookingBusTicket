@@ -1,0 +1,48 @@
+<div class="uk-container" style="margin-bottom: 50px; margin-top: 50px;">
+  <legend class="uk-legend uk-text-center" style="margin-bottom: 30px;">Edit your information</legend>
+  <form class="uk-grid-small" uk-grid>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="username">UserName</label>
+      <input class="uk-input" id="username" placeholder="Enter your username" [value]="curUser.userName" disabled>
+    </div>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="fullname">Fullname</label>
+      <input class="uk-input" id="fullname" placeholder="Enter your fullname" [value]="curUser.fullName">
+    </div>
+    <div class="uk-width-1-2@s">
+      <mat-form-field style="width: 100%;">
+        <input matInput [matDatepicker]="picker" id="date" placeholder="Date Of Birth" [value]="curUser.dateOfBirth">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="uk-width-1-2@s" id="gender">
+      <label><input class="uk-radio"  type="radio" name="gender" value="true" checked> Male</label>
+      <label><input class="uk-radio" type="radio" name="gender" value="false"> Female</label>
+    </div>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="username">Password</label>
+      <input class="uk-input" type="password" id="password" placeholder="Enter your password">
+    </div>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="fullname">Confirm Password</label>
+      <input class="uk-input" type="password" id="cfpassword" placeholder="Enter your confirm password">
+    </div>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="phone">Phone Number</label>
+      <input class="uk-input" id="phone" placeholder="Enter your phone number" [value]="curUser.phoneNum">
+    </div>
+    <div class="uk-width-1-2@s">
+      <label class="uk-form-label" for="email">Email</label>
+      <input class="uk-input" type="email" id="email" placeholder="Enter your email" [value]="curUser.email">
+    </div>
+    <div class="uk-width-1-1@s">
+      <label class="uk-form-label" for="address">Address</label>
+      <input class="uk-input" id="address" placeholder="Enter your address" [value]="curUser.address">
+    </div>
+    <div class="uk-margin uk-text-center">
+      <button class="uk-button uk-button-primary" (click)="updateUser()">Update</button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>

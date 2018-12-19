@@ -1,0 +1,29 @@
+<div class="uk-container" style="margin-top: 50px;margin-bottom: 50px">
+  <table class="uk-table uk-table-small  uk-table-hover uk-table-divider">
+    <thead>
+      <tr>
+        <th>Stt</th>
+        <th>FullName</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Seat Number</th>
+        <th>Departure Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of ticketDetails">
+        <td>{{t.ticketDetailId}}</td>
+        <td>{{t.firstName}} {{t.lastName}}</td>
+        <td>{{t.age}}</td>
+        <td>
+          {{t.gender === true ? 'Male' : 'Female'}}
+        </td>
+        <td>{{t.numSeat}}</td>
+        <td>{{t.departureDate}}</td>
+        <td><span class="uk-label uk-label-success hp-label-success" *ngIf="">Canceled</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-footer></app-footer>

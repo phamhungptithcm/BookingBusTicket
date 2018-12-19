@@ -1,0 +1,80 @@
+<div class="biggest-container">
+  <mat-form-field>
+    <p class="form-title">Bus ID</p>
+    <mat-select [(ngModel)]="busId" (ngModelChange)="onChange($event)">
+      <mat-option *ngFor="let c of buses" #busId [value]="c.busId">{{c.busId}} </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+
+
+  <div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Delete successfully!</strong>
+  </div>
+
+</div>
+
+<div *ngIf="pagerShit">
+  <!-- <div class="text-center"> -->
+  <!-- items being paged -->
+  <table mat-table [dataSource]="bookedTickets" multiTemplateDataRows class="mat-elevation-z8" matSort>
+
+    <!--  Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.ticketDetailId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.lastName}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="departureDate">
+      <th mat-header-cell *matHeaderCellDef> Departure Date </th>
+      <td mat-cell *matCellDef="let row"> {{row.departureDate}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="busId">
+      <th mat-header-cell *matHeaderCellDef> Bus ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.ticket.bus.busId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ticketId">
+      <th mat-header-cell *matHeaderCellDef>Ticket Id</th>
+      <td mat-cell *matCellDef="let row"> {{row.ticket.ticketId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="View">
+      <th mat-header-cell *matHeaderCellDef>View</th>
+      <td mat-cell *matCellDef="let row">
+        <button class="uk-button uk-button-default s delete" (click)="cancel(row)">Delete</button>
+        <a class="uk-button uk-button-default s edit" href="#modal-{{row.ticketDetailId}}" uk-toggle>Edit</a>
+        <app-updateticketdetail [ticketDetail]="row"></app-updateticketdetail>
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- pager -->
+  <div class="text-center">
+    <ul class="uk-pagination uk-flex-center" *ngIf="pager.pages && pager.pages.length" uk-margin style="color: red;font-weight: bold;margin-top: 15px;">
+      <li [ngClass]="{disabled:pager.currentPage === 1}"><a (click)="setPage(1)">First</a></li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}"><a (click)="setPage(pager.currentPage - 1)"><span
+            uk-pagination-previous></span></a></li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"><a (click)="setPage(page)">{{page}}</a></li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.currentPage + 1)"><span
+            uk-pagination-next></span></a></li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}"><a (click)="setPage(pager.totalPages)">Last</a></li>
+    </ul>
+  </div>
+</div>

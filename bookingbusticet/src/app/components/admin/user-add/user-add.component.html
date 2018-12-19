@@ -1,0 +1,137 @@
+<div class="uk-container">
+  <div class="uk-container uk-container-large">
+    <h2 class="uk-heading-line"><span>Create New User</span></h2>
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit()" class="uk-form-horizontal">
+
+      <div class="uk-margin">
+        <label class="uk-form-label">User Name</label>
+        <input type="text" class="uk-input uk-form-width-large" name="userName" ngModel [(ngModel)]="model.userName" minlength="3"
+          required #userName="ngModel" [class.uk-form-danger]="userName.invalid && (userName.dirty || userName.touched)"
+          [class.uk-form-success]="userName.valid && (userName.dirty || userName.touched)" placeholder="*" (input)="checkUserName(userName.value)">
+
+        <div *ngIf="userName.errors && (userName.dirty || userName.touched || alert)" class="uk-text-danger">
+          <p *ngIf="userName.errors.required">Username is required</p>
+          <!-- <p *ngIf="userName.errors.userNameDomain">Username is existed!</p> -->
+        </div>
+        <p *ngIf="alert" class="uk-text-danger">Username is existed!</p>
+      </div>
+
+      <!-- <div class="uk-margin">
+    <label class="uk-form-label">Password</label>
+    <input type="password" class="uk-input uk-form-width-large" name="password" ngModel [(ngModel)]="model.password"
+      required #password="ngModel" [class.uk-form-danger]="password.invalid && (password.dirty || password.touched)"
+      [class.uk-form-success]="password.valid && (password.dirty || password.touched)" placeholder="*">
+
+    <div *ngIf="password.errors && (password.dirty || password.touched)" class="uk-text-danger">
+      <p *ngIf="password.errors.required">Password is required</p>
+    </div>
+  </div> -->
+
+      <div ngModelGroup="passwords" #passwords="ngModelGroup" appCheckPassword>
+        <div class="uk-margin">
+          <label class="uk-form-label">Password</label>
+          <input type="password" class="uk-input uk-form-width-large" placeholder="*" #passwordA="ngModel" name="passwordA" minlength="8"
+            required id="passwordA" [(ngModel)]="model.password" [class.uk-form-danger]="passwordA.invalid && (passwordA.dirty || passwordA.touched)"
+            [class.uk-form-success]="passwordA.valid && (passwordA.dirty || passwordA.touched)">
+        </div>
+
+        <div class="uk-margin">
+          <label class="uk-form-label">Confirm Password</label>
+          <input type="password" class="uk-input uk-form-width-large" placeholder="*" #passwordB="ngModel" name="passwordB" minlength="8"
+            required id="passwordB" [(ngModel)]="password2" [class.uk-form-danger]="passwordB.invalid && (passwordB.dirty || passwordA.touched)"
+            [class.uk-form-success]="passwordB.valid && (passwordB.dirty || passwordA.touched)">
+        </div>
+      </div>
+
+      <div *ngIf="passwordB.invalid && (passwordA.dirty || passwordA.touched)" class="uk-text-danger">
+        Please confirm your password.
+      </div>
+      <div *ngIf="passwords.errors?.passwordCheck && (passwordB.dirty || passwordB.touched)" class="uk-text-danger">
+        Passwords do not match.
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">User Role</label>
+        <select class="uk-select uk-form-width-large" name="userRole" ngModel [(ngModel)]="model.userRole" required
+          #userRole="ngModel" [class.uk-form-danger]="userRole.invalid && (userRole.dirty || userRole.touched)"
+          [class.uk-form-success]="userRole.valid && (userRole.dirty || userRole.touched)">
+          <option value="1">Customer</option>
+          <option value="2">Staff</option>
+          <option value="3">Admin</option>
+
+          <div *ngIf="userRole.errors && (userRole.dirty || userRole.touched)" class="uk-text-danger">
+            <p *ngIf="userRole.errors.required">User role is required</p>
+          </div>
+        </select>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Full Name</label>
+        <input type="text" class="uk-input uk-form-width-large" name="fullName" ngModel [(ngModel)]="model.fullName"
+          required #fullName="ngModel" [class.uk-form-danger]="fullName.invalid && (fullName.dirty || fullName.touched)"
+          [class.uk-form-success]="fullName.valid && (fullName.dirty || fullName.touched)" placeholder="*">
+
+        <div *ngIf="fullName.errors && (fullName.dirty || fullName.touched)" class="uk-text-danger">
+          <p *ngIf="fullName.errors.required">Full name is required</p>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Phone Number</label>
+        <input type="text" class="uk-input uk-form-width-large" name="phoneNum" ngModel [(ngModel)]="model.phoneNum"
+          required #phoneNum="ngModel" pattern="^[0][1-9][0-9]{8}$"
+          [class.uk-form-danger]="phoneNum.invalid && (phoneNum.dirty || phoneNum.touched)"
+          [class.uk-form-success]="phoneNum.valid && (phoneNum.dirty || phoneNum.touched)" placeholder="*">
+
+        <div *ngIf="phoneNum.errors && (phoneNum.dirty || phoneNum.touched)" class="uk-text-danger">
+          <p *ngIf="phoneNum.errors.required">Phone number is required</p>
+          <p *ngIf="phoneNum.errors.pattern">Phone number is invalid</p>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Email</label>
+        <input type="email" class="uk-input uk-form-width-large" name="email" ngModel [(ngModel)]="model.email"
+          required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" [class.uk-form-danger]="email.invalid && (email.dirty || email.touched)"
+          [class.uk-form-success]="email.valid && (email.dirty || email.touched)" placeholder="*">
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="uk-text-danger">
+          <p *ngIf="email.errors.required">Email is required</p>
+          <p *ngIf="email.errors.pattern">Email is invalid</p>
+          <!-- <p *ngIf="email.errors.emailDomain">Email must be on the codecraft.tv domain</p> -->
+        </div>
+      </div>
+
+      <!-- <div class="uk-margin">
+        <label class="uk-form-label">Date Of Birth</label>
+        <input type="date" class="uk-input uk-form-width-large" name="dayOfBirth" ngModel [(ngModel)]="model.dayOfBirth">
+      </div> -->
+      <div class="">
+        <label class="uk-form-label">Date Of Birth</label>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" disabled name="dateOfBirth" ngModel [(ngModel)]="model.dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="uk-grid-small">
+        <label class="uk-form-label">Gender</label>
+        <label><input class="uk-radio" type="radio" name="gender" ngModel [(ngModel)]="model.gender" value=true> Male</label>
+        <label><input class="uk-radio" type="radio" name="gender" ngModel [(ngModel)]="model.gender" value=false> Female</label>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Address</label>
+        <input type="text" class="uk-input uk-form-width-large" name="address" ngModel [(ngModel)]="model.address">
+      </div>
+      <div class="uk-inline" id="button1">
+        <button type="submit" class="uk-button uk-button-primary uk-align-center" [disabled]="f.invalid || alert">Submit</button>
+      </div>
+      <!-- <pre>{{f.value | json}}</pre> -->
+      <!-- <pre>Valid? {{email?.valid}}</pre>
+  <pre>Dirty? {{email?.dirty}}</pre>
+  <pre>Touched? {{f.form.controls.email?.touched}}</pre> -->
+    </form>
+    <!-- <p *ngFor="modelCheck$ | async">{{modelCheck$.userName}}</p> -->
+    <button class="uk-button" (click)="goBack()">go back</button>
+  </div>
+</div>

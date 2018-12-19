@@ -1,0 +1,88 @@
+/* Structure */
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    border:1px #01579B solid;
+    font-size: 14px;
+    width: 100%;
+    background-color: white;
+  }
+  table {
+    min-width: 100%;
+  }
+  
+  
+
+  .modal-title{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+ 
+  body > app-root > app-viewtickets > div > div > div > table{
+    min-width: 100%;
+    width: 100%;
+  }
+  body > app-root > app-viewtickets > div{
+    min-width: 100%;
+  }
+  table{
+    background-color: #E1F5FE;
+    border: 1px orange solid;
+  }
+  tr,td{
+    color: #01579B;
+    text-align: center;
+    border: 1px #01579B solid;
+  }
+  th{
+    color: #01579B;
+    border: 1px #01579B solid;
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+  }
+  tr,td{
+    font-size:18px;
+  }
+  td :hover{
+    color: blue;
+  }
+  .biggest-container{
+    background-color: #E1F5FE;
+
+  }
+
+.form-title{
+  color: #01579B;
+  font-family: cursive
+  
+}
+.btn-update
+{
+  background-color:royalblue;
+  color: white
+}
+.btn-delete
+{
+  background-color:red;
+  color: white
+}
+.uk-button, .uk-button-default s{
+  font-weight: bold;
+  font-size: 14px;  
+  color: white;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+.delete{
+  background-color: violet ;
+}
+.edit{
+  background-color: cornflowerblue
+}
+th.mat-header-cell {
+  text-align: center;
+}

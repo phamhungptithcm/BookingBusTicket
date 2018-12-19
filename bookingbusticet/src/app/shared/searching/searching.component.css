@@ -1,0 +1,17 @@
+  .uk-background-default{
+    background: #16355C;
+}
+.uk-background-default input{
+    color: #bbdefb;
+}
+mat-form-field{
+  min-width:300px !important;
+  margin-right: 15px;
+}
+mat-placeholder{
+  color: #ffff8d;
+}
+.uk-padding h3 {
+  color: #ffff8d;
+  font-size: 16px;
+}

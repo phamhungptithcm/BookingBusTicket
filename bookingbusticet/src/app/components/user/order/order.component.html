@@ -1,0 +1,139 @@
+<div class="uk-container">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <div>
+        <div class="uk-background-default uk-padding uk-panel hp-traveller_info_section">
+          <div class="uk-text-center" uk-grid>
+            <div class="uk-width-1-5 uk-text-left">{{trip.bus.busName}}</div>
+            <div class="uk-width-1-5">
+              <div>{{trip.route.provinceFrom.provinceName}}</div>
+              <div>{{trip.departureTime}}</div>
+            </div>
+            <div class="uk-width-1-5"><span uk-icon="arrow-right"></span></div>
+            <div class="uk-width-1-5">
+              <div>{{trip.route.provinceTo.provinceName}}</div>
+              <div>{{trip.arrivalTime}}</div>
+            </div>
+            <div class="uk-width-1-5 uk-text-right">
+              <div style="font-weight: bold">Grand Total: </div>
+              <div style="color: #d50000">{{amount}}.000 VNĐ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div uk-grid>
+        <div class="uk-width-3-4">
+          <form class="example-form" (ngSubmit)="onSubmitForm(f)" #f="ngForm">
+            <div class="uk-background-default uk-padding uk-panel hp-traveller_info_section" *ngFor="let seat of seats">
+              <ng-template matStepLabel>Traveller</ng-template>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="First name" name="firstName{{seat}}" ngModel required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="Last name" name="lastName{{seat}}" ngModel required>
+              </mat-form-field>
+              <div uk-grid>
+                <div class="uk-width-1-3">
+                  <div class="uk-margin">
+                    <div>Gender</div>
+                    <label><input class="uk-radio" value="1" type="radio" name="gender{{seat}}" ngModel> Male</label>
+                    <label><input class="uk-radio" value="0" type="radio" name="gender{{seat}}" ngModel> Female</label>
+                  </div>
+                </div>
+                <div class="uk-width-1-3">
+                  <div class="uk-margin">
+                    <div>Age</div>
+                    <input class="uk-input uk-form-width-small" type="number" name="age{{seat}}" min="1" placeholder="Small"
+                      ngModel required>
+                  </div>
+                </div>
+                <div class="uk-width-1-3">
+                  <div>Seat No.</div>
+                  <div>{{seat}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="uk-text-right" style="margin-top: 10px;">
+              <button mat-raised-button color="accent" matStepperNext type="submit">Next</button>
+            </div>
+          </form>
+        </div>
+        <div class="uk-width-1-4">
+          <div class="uk-background-default uk-padding uk-panel hp-traveller_info_section">
+            <p class="uk-h4">Default</p>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <div class="uk-card uk-card-default uk-width-1-1@m hp-boxpayment">
+        <div class="uk-card-header">
+          <div class="uk-text-center" uk-grid>
+            <div class="uk-width-1-6 uk-text-left">
+              <h5>Review Order</h5>
+              <time datetime=""></time>
+            </div>
+            <div class="uk-width-1-6">
+              <div>{{trip.route.provinceFrom.provinceName}}</div>
+              <div>{{trip.departureTime}}</div>
+            </div>
+            <div class="uk-width-1-6"><span uk-icon="arrow-right"></span></div>
+            <div class="uk-width-1-6">
+              <div>{{trip.route.provinceTo.provinceName}}</div>
+              <div>{{trip.arrivalTime}}</div>
+            </div>
+            <div class="uk-width-1-6">
+              <h5>Contact</h5>
+            </div>
+            <div class="uk-width-1-6 uk-text-right">
+              <div style="font-weight: bold">Grand Total: </div>
+              <div style="color: #d50000">{{amount}}.000 VNĐ</div>
+            </div>
+          </div>
+        </div>
+        <div class="uk-card-body">
+          <form [formGroup]="secondFormGroup" class="example-form">
+            <ng-template matStepLabel>Payments</ng-template>
+            <h5>Credit/Debit Cards</h5>
+            <hr>
+            <mat-form-field class="example-full-width-payment">
+              <input matInput placeholder="CARD NUMBER" formControlName="cardNumber" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width-payment">
+              <input matInput placeholder="NAME ON THE CARD" formControlName="nameOnCard" required>
+            </mat-form-field>
+            <mat-form-field class="example-part-width">
+              <input matInput placeholder="Month" formControlName="Month" required>
+            </mat-form-field>
+            <mat-form-field class="example-part-width">
+              <input matInput placeholder="Year" formControlName="Year" required>
+            </mat-form-field>
+            <mat-form-field class="example-part-width">
+              <input matInput placeholder="CVV" formControlName="CCV" required>
+            </mat-form-field>
+          </form>
+        </div>
+        <div class="uk-card-footer">
+          <div uk-grid>
+            <div class="uk-width-1-2">Total: </div>
+            <div class="uk-width-1-2 uk-text-right">
+              <div style="color: #d50000;font-weight: bold">{{amount}}.000 VNĐ</div>
+            </div>
+          </div>
+          <hr>
+          <div class="uk-text-right">
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext (click)="add()">Purchase</button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div>
+        <button mat-stroked-button color="primary" routerLink="/">Go to Home</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

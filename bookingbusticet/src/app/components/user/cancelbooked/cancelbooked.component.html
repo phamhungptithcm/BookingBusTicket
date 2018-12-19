@@ -1,0 +1,35 @@
+<div class="uk-container" style="margin-bottom: 50px; margin-top: 50px">
+    <table class="uk-table uk-table-small uk-table-hover uk-table-divider">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>FullName</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Seat Number</th>
+                <th>Departure Date</th>
+                <th>Cancel</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of ticketDetails">
+                <td>{{t.ticketDetailId}}</td>
+                <td>{{t.firstName}} {{t.lastName}}</td>
+                <td>{{t.age}}</td>
+                <td>
+                    {{t.gender === true ? 'Male' : 'Female'}}
+                </td>
+                <td>{{t.numSeat}}</td>
+                <td>{{t.departureDate}}</td>
+                <td>
+                    <a (click)="updateStatus(t)" uk-icon="icon: ban" uk-tooltip="Cancel" *ngIf="t.status === true"></a>
+                    <span class="uk-label uk-label-danger hp-label-danger" *ngIf="t.status === false">Canceled</span>
+                </td>
+                <td><a href="#modal-{{t.ticketDetailId}}" uk-toggle uk-icon="icon: info" uk-tooltip="Information"></a></td>
+                <app-infoticket [ticketDetail]="t"></app-infoticket>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<app-footer></app-footer>

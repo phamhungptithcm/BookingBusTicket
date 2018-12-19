@@ -1,0 +1,89 @@
+<div class="uk-container">
+  <div class="uk-container uk-container-large">
+    <h2 class="uk-heading-line"><span>Hello {{user.fullName}}</span></h2>
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit()" class="uk-form-horizontal">
+
+      <div class="uk-margin">
+        <label class="uk-form-label">User Name</label>
+        <input type="text" class="uk-input uk-form-width-large" name="userName" ngModel [(ngModel)]="user.userName"
+          required #userName="ngModel" placeholder="user.userName" disabled>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">User Role</label>
+        <!-- <input type="text" class="uk-input uk-form-width-large" name="userRole" ngModel [(ngModel)]="user.userRole"
+      required #userRole="ngModel" placeholder="user.userRole" disabled> -->
+        <select class="uk-select uk-form-width-large" name="userRole" ngModel [(ngModel)]="user.userRole" #userRole="ngModel">
+          <option value="" disabled selected>Select your option</option>
+          <option value="1">Customer</option>
+          <option value="2">Staff</option>
+          <option value="3">Admin</option>
+        </select>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Phone Number</label>
+        <input type="text" class="uk-input uk-form-width-large" name="phoneNum" ngModel [(ngModel)]="user.phoneNum"
+          required #phoneNum="ngModel" pattern="^[0][1-9][0-9]{8}$"
+          [class.uk-form-danger]="phoneNum.invalid && (phoneNum.dirty || phoneNum.touched)"
+          [class.uk-form-success]="phoneNum.valid && (phoneNum.dirty || phoneNum.touched)" placeholder="user.phoneNum">
+
+        <div *ngIf="phoneNum.errors && (phoneNum.dirty || phoneNum.touched)" class="uk-text-danger">
+          <p *ngIf="phoneNum.errors.required">Full name is required</p>
+          <p *ngIf="phoneNum.errors.pattern">Phone number is invalid</p>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Email</label>
+        <input type="email" class="uk-input uk-form-width-large" name="email" ngModel [(ngModel)]="user.email" required
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel" [class.uk-form-danger]="email.invalid && (email.dirty || email.touched)"
+          [class.uk-form-success]="email.valid && (email.dirty || email.touched)" placeholder="user.email">
+
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="uk-text-danger">
+          <p *ngIf="email.errors.required">Email is required</p>
+          <p *ngIf="email.errors.pattern">Email is invalid</p>
+        </div>
+      </div>
+
+      <!-- <div class="uk-margin">
+        <label class="uk-form-label">Date Of Birth</label>
+        <input type="date" class="uk-input uk-form-width-large" name="dayOfBirth" ngModel [(ngModel)]="user.dayOfBirth">
+      </div> -->
+
+      <div class="">
+        <label class="uk-form-label">Date Of Birth</label>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" disabled name="dateOfBirth" ngModel [(ngModel)]="user.dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="">
+        <label class="uk-form-label">Gender</label>
+        <select class="uk-select uk-form-width-large" name="gender" ngModel [(ngModel)]="user.gender" #gender="ngModel">
+          <option value="" disabled selected>Select your option</option>
+          <option value="true">Male</option>
+          <option value="false">Female</option>
+        </select>
+      </div>
+
+      <!-- <div class="uk-margin uk-grid-small">
+        <label class="uk-form-label">Gender</label>        
+          <label><input class="uk-radio" type="radio" name="gender" ngModel [(ngModel)]="user.gender" value="true"> Male</label>
+          <label><input class="uk-radio" type="radio" name="gender" ngModel [(ngModel)]="user.gender" value="false"> Female</label>        
+      </div> -->
+
+      <div class="uk-margin">
+        <label class="uk-form-label">Address</label>
+        <input type="text" class="uk-input uk-form-width-large" name="address" ngModel [(ngModel)]="user.address">
+      </div>
+      <div class="uk-inline" id="button1">
+        <button type="submit" class="uk-button uk-button-primary uk-align-center" [disabled]="f.invalid">Save</button>
+      </div>
+    </form>
+    <button class="uk-button" (click)="goBack()">go back</button>
+    <button class="uk-button" mat-raised-button (click)="openChangePassDialog()">Change Pass</button>
+  </div>
+</div>

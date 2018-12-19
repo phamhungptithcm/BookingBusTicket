@@ -1,0 +1,116 @@
+<div>
+  <nav class="uk-navbar-container uk-container-expand" uk-navbar>
+    <div class="uk-navbar-left">
+      <ul class="uk-navbar-nav" style="text-transform: none !important">
+        <li>
+          <a class="uk-navbar-item">Quick Filters <span uk-icon="icon:  chevron-down"></span></a>
+          <div class="uk-navbar-dropdown " uk-dropdown="mode: click">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><label><input class="uk-checkbox" type="checkbox"> Pickup after 6 PM</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Drop before 11 AM</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> The most seats</label></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a class="uk-navbar-item">Price <span uk-icon="icon:  chevron-down"></span></a>
+          <div class="uk-navbar-dropdown " uk-dropdown="mode: click">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><label><input class="uk-checkbox" type="checkbox"> 50.000 VNĐ - 150.000 VNĐ</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> 150.000 VNĐ - 250.000 VNĐ</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> 250.000 VNĐ - 400.000 VNĐ</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> 400.000 VNĐ - 600.000 VNĐ</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> 600.000 VNĐ - 1.000.000 VNĐ</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> 1.000.000 VNĐ - 2.000.000 VNĐ</label></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="uk-navbar-item">Pickup Time <span uk-icon="icon:  chevron-down"></span></a>
+          <div class="uk-navbar-dropdown " uk-dropdown="mode: click">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><label><input class="uk-checkbox" type="checkbox"> Morning(6 AM to 12 PM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Afternoon(12 PM to 6 PM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Evening(6 PM to 12 AM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Night(12 AM to 6 AM)</label></li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="uk-navbar-item">Drop Time <span uk-icon="icon:  chevron-down"></span></a>
+          <div class="uk-navbar-dropdown " uk-dropdown="mode: click">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li class="uk-active"><label><input class="uk-checkbox" type="checkbox"> Morning(6 AM to 12 PM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Afternoon(12 PM to 6 PM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Evening(6 PM to 12 AM)</label></li>
+              <li><label><input class="uk-checkbox" type="checkbox"> Night(12 AM to 6 AM)</label></li>
+            </ul>
+          </div>
+        </li>
+        <li><a><span style="height: 40px; width: 0.3px; border: 0.3px outset silver"></span></a></li>
+        <li>
+          <a href="#" class="uk-navbar-item">SortBy: {{curSortBy}} <span uk-icon="icon:  chevron-down"></span></a>
+          <div class="uk-navbar-dropdown " uk-dropdown="mode: click">
+            <ul class="uk-nav uk-navbar-dropdown-nav">
+              <li *ngFor="let s of sortBys" (click)="actionSortBy(s)"><a>{{s}}</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="uk-navbar-right"> -->
+    <!-- <ul class="uk-navbar-nav"> -->
+
+    <!-- </ul> -->
+    <!-- </div> -->
+  </nav>
+</div>
+<div class="uk-child-width-1-1@s uk-text-center" uk-grid>
+  <div>
+    <div class="uk-background-default uk-padding uk-panel hp-boxroute">
+      <div uk-grid>
+        <div class="uk-width-1-5"></div>
+        <div class="uk-width-1-5">
+          <div>{{from.provinceName}}</div>
+          <div style="margin-top: 20px; color: #16355C">{{departureDate}}</div>
+        </div>
+        <div class="uk-width-1-5"><span uk-icon="arrow-right"></span></div>
+        <div class="uk-width-1-5">
+          <div>{{to.provinceName}}</div>
+          <div><button class="uk-button uk-button-default" style="margin-top: 10px;background: #fbc02d; font-size: 14px;border-radius: 5px;" type="button" uk-toggle="target: #toggle-searching">Modify</button></div>
+        </div>
+        <div class="uk-width-1-5"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-searching></app-searching>
+<div class="uk-container" style="margin-top: 50px">
+  <div class="uk-child-width-1-1@s uk-text-left" uk-grid>
+    <div>
+      <div class="uk-background-default uk-padding uk-panel hp-tripbox" *ngFor="let t of trips">
+        <div uk-grid>
+          <div class="uk-width-1-4">
+            <div>{{t.departureTime}} PM</div>
+            <div style="font-size: 10px;">{{t.arrivalTime}}</div>
+            <div>{{t.arrivalTime}}</div>
+          </div>
+          <div class="uk-width-1-2">
+            <div class="hp-tripinfo_title"><i class="fa fa-bus fa-2x" aria-hidden="true" style="color: #d50000;margin-right: 10px"></i> <span>{{t.bus.busName}} /</span> License plate: {{t.bus.busLicensePlate}}</div>
+            <div style="font-size: 13px; color: #757575;">{{t.bus.numSeat}} - Seats Left</div>
+            <div class="hp-linkdetailtrip"><a>Polices</a></div>
+          </div>
+          <div class="uk-width-1-4 uk-text-center">
+            <div style="color: black; font-size: 22px;font-weight: bold;">{{t.unitPrice}}.000 VNĐ</div>
+            <div>
+              <a class="uk-button uk-button-default uk-button-small hp-hideseats" type="button" href="#modal-{{t.tripId}}"
+                uk-toggle>Select Seats</a>
+              <app-seat [trip]="t"></app-seat>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

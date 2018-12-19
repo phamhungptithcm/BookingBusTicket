@@ -1,0 +1,48 @@
+<div id="modal-{{trip.tripId}}" class="uk-flex-top" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical hp-bodychooseseat">
+    <h4><i class="fa fa-bus" aria-hidden="true" style="color: #d50000;margin-right: 10px"></i> {{trip.bus.busName}} /
+      <span style="font-size: 14px; color: #bdbdbd">License plate:
+        {{trip.bus.busLicensePlate}}</span></h4>
+    <hr>
+    <div class="hp-boxseat">
+      <div uk-grid>
+        <div class="uk-width-1-6 hp-cockpit">
+          <i class="fa fa-life-ring" aria-hidden="true"></i>
+        </div>
+        <div class="uk-width-5-6 hp-boxchoose">
+          <label *ngFor="let t of tickets" matTooltip="{{trip.unitPrice}}.000 VNĐ">
+            <input class="uk-checkbox" type="checkbox" id="{{t.ticket.ticketId}}" (click)="chooseSeats(t.ticket)" *ngIf="t.stt === true">
+            <input class="uk-checkbox" style="border: 1px solid red !important;
+            cursor: not-allowed;" type="checkbox"
+              *ngIf="t.stt === false" disabled>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="uk-container uk-margin uk-text-center">
+      <div uk-grid>
+        <div class="uk-width-1-2 hp-help">
+          <div style="height: 25px;width: 80px;border: 2px solid #039be5;;font-size: 14px;">
+            Available
+          </div>
+          <div style="height: 25px;width: 80px;border: 1px solid red; margin-left: 15px;font-size: 14px;">
+            Booked
+          </div>
+        </div>
+        <div class="uk-width-1-2 uk-text-right">
+          <button class="uk-button uk-button-default uk-button-small hp-btnbooked" (click)="bookTicket()">
+            Booked Seats
+          </button></div>
+      </div>
+      <div class="uk-text-left" uk-grid>
+        <div class="uk-width-1-2">
+          <p style="color: #ff6f00;font-weight: bold">Seats: [<span *ngFor="let s of seats" style="font-weight: normal; color: black">{{s}}
+            </span>]</p>
+        </div>
+        <div class="uk-width-1-2">
+          <p style="color: #ff3d00;font-weight: bold;">Amout: <span style="color: #283593;margin-left: 20px">{{amount}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

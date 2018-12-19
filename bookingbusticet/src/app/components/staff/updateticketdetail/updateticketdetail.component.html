@@ -1,0 +1,28 @@
+<div id="modal-{{ticketDetail.ticketDetailId}}" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <form >
+
+            <div class="uk-margin">
+               <div> <label>First Name</label></div>
+                <input [(ngModel)]="tick.firstName" name="firstName" value="{{ticketDetail.firstName}}"class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="First Name" ngModel>
+            </div>
+
+            <div class="uk-margin">
+                    <div> <label>Last Name</label></div>
+                <input [(ngModel)]="tick.lastName" name="lastName" value="{{ticketDetail.lastName}}" class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="Last Name" ngModel>
+            </div>
+
+            <div class="uk-margin">
+                    <div> <label>Bus ID</label></div>
+                <input value="{{ticketDetail.ticket.bus.busId}}"class="uk-input uk-form-width-medium uk-form-large" type="text" placeholder="Bus ID">
+            </div>
+            <div class="row ">
+                   <button class="uk-modal-close"  (click)="submit()">Submit</button>
+            </div>
+        </form>
+       
+    </div>
+</div>

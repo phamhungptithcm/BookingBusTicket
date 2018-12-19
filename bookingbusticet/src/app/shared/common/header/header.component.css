@@ -1,0 +1,38 @@
+.hr-header{
+    color: #01579b;
+    background: #01579b;
+    border: 0;
+    height: 3px;
+}
+.uk-navbar-container{
+    margin-top: 20px;
+   
+}
+.hp-brand a{
+    font-size: 20px !important;
+    color: #01579b !important;
+    font-weight: bold !important;
+    text-transform: none !important;
+    font-family: Gabriola !important;
+}
+.hp-brand span{
+    background: #ff1744;
+    border-radius: 5px 5px;
+    font-family: Vivaldi !important;
+    padding: 0px 7px 0px 7px;
+    font-weight: bold;
+    font-size: 100%;
+    color: black;
+}
+ul,li{
+    font-size: 50px;
+    font-weight: bold;
+    color: #01579b;
+}
+ul{
+    width:100%;
+}
+.uk-container{
+    color: #01579b;
+    background: #01579b;
+}
