@@ -68,7 +68,6 @@ public class ProvinceServiceImp implements ProvinceService{
 
 	@Override
 	public Iterable<Province> findRemainingProvinces(Integer id) {
-		// TODO Auto-generated method stub
 		return provinceRepository.findRemainingProvinces(id);
 	}
 }

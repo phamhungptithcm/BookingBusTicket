@@ -7,24 +7,18 @@ import com.bookingbusticket.entity.Ticket;
 import com.bookingbusticket.helper.TicketAndStatus;
 
 public interface TicketService {
-	public Ticket save(Ticket entity);
+	public List<Ticket> findAll()  throws Exception;
 
-	public void delete(Integer id);
+	public Ticket finfById(Integer id)  throws Exception;
 
-	public Ticket update(Ticket entity);
+	public List<TicketAndStatus> findByBusId(Date date, Integer busId)  throws Exception;
 
-	public List<Ticket> findAll();
+	public Iterable<Ticket> findByBusId(Integer busId)  throws Exception;
 
-	public Ticket finfById(Integer id);
+	public Iterable<Ticket> findAllAvailableTicketOrSeat()  throws Exception;
 
-	public List<TicketAndStatus> findByBusId(Date date, Integer busId);
-
-	public Iterable<Ticket> findByBusId(Integer busId);
-
-	public Iterable<Ticket> findAllAvailableTicketOrSeat();
-
-	public Iterable<Ticket> findByDate(Date date, Integer id);
+	public Iterable<Ticket> findByDate(Date date, Integer id)  throws Exception;
 
 	// Get Ticket Quantity
-	public int getTicketQuantity();
+	public int getTicketQuantity()  throws Exception;
 }

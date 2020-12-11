@@ -5,22 +5,22 @@ import java.util.List;
 import com.bookingbusticket.entity.Province;
 
 public interface ProvinceService {
-	public Province save(Province entity);
+	public Province save(Province entity) throws Exception;
 
-	public void delete(Integer id);
+	public void delete(Integer id) throws Exception;
 
-	public Province update(Province entity);
+	public Province update(Province entity) throws Exception;
 
-	public List<Province> findAll();
+	public List<Province> findAll() throws Exception;
 
-	public Province finfById(Integer id);
+	public Province finfById(Integer id) throws Exception;
 
-	public List<Province> findByProvinceTo(Integer id);
+	public List<Province> findByProvinceTo(Integer id) throws Exception;
 
-	public Iterable<Province> findRemainingProvinces(Integer id);
+	public Iterable<Province> findRemainingProvinces(Integer id) throws Exception;
 
-	public Iterable<Province> findByProvinceTo(String name, Integer id);
+	public Iterable<Province> findByProvinceTo(String name, Integer id) throws Exception;
 
-	public Iterable<Province> findByProvinceFrom(String name);
+	public Iterable<Province> findByProvinceFrom(String name) throws Exception;
 	
 }

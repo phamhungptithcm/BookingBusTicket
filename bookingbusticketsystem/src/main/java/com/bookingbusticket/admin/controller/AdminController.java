@@ -1,10 +1,11 @@
 package com.bookingbusticket.admin.controller;
 
-import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,64 +18,116 @@ import com.bookingbusticket.entity.User;
 import com.bookingbusticket.service.UserService;
 
 @RestController
-@RequestMapping("${admin.context.path}")
+@RequestMapping("${secure.admin.context.path}")
 public class AdminController {
+	
+	private Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
 	private UserService userService;
 	
 	@GetMapping
-	public List<User> findAll(){
-		return userService.findAll();
+	public ResponseEntity<?> findAll(){
+		try {
+			return ResponseEntity.ok(userService.findAll());
+		} catch (Exception e) {
+			logger.error("Error findAll >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	//Pagination
 	@RequestMapping("/users")
-	public Page<User> findAllUserPagination(@RequestParam int pageIn, @RequestParam int size) {
-		return userService.getAllPagination(pageIn, size);
+	public ResponseEntity<?>  findAllUserPagination(@RequestParam int pageIn, @RequestParam int size) {
+		try {
+			return ResponseEntity.ok(userService.getAllPagination(pageIn, size));
+		} catch (Exception e) {
+			logger.error("Error findAllUserPagination >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	@GetMapping("/users/{id}")
-	public User findOneUser(@PathVariable("id") int id) {
-		return userService.getOne(id);
+	public ResponseEntity<?>  findOneUser(@PathVariable("id") int id) {
+		try {
+			return ResponseEntity.ok(userService.getOne(id));
+		} catch (Exception e) {
+			logger.error("Error findOneUser >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	//Pagination
 	@RequestMapping("/users/filter")
-	public Page<User> filterByRolePagination(@RequestParam int roleId, @RequestParam int pageIn, @RequestParam int size) {
-		return userService.filterByRolePagination(roleId, pageIn, size);
+	public ResponseEntity<?>  filterByRolePagination(@RequestParam int roleId, @RequestParam int pageIn, @RequestParam int size) {
+		try {
+			return ResponseEntity.ok(userService.filterByRolePagination(roleId, pageIn, size));
+		} catch (Exception e) {
+			logger.error("Error filterByRolePagination >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	//Pagination
 	@GetMapping("/users/findByUserName/{userName}")
-	public Page<User> findByUserName(@PathVariable("userName") String userName, Pageable pageable) {
-		return userService.findByUserNamePagination(userName, pageable);
+	public ResponseEntity<?>  findByUserName(@PathVariable("userName") String userName, Pageable pageable) {
+		try {
+			return ResponseEntity.ok(userService.findByUserNamePagination(userName, pageable));
+		} catch (Exception e) {
+			logger.error("Error findByUserName >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	//Pagination
 	@GetMapping("/users/findByEmail/{email}")
-	public Page<User> findByEmail(@PathVariable("email") String email, Pageable pageable) {
-		return userService.findByEmailPagination(email, pageable);
+	public ResponseEntity<?>  findByEmail(@PathVariable("email") String email, Pageable pageable) {
+		try {
+			return ResponseEntity.ok(userService.findByEmailPagination(email, pageable));
+		} catch (Exception e) {
+			logger.error("Error findByEmail >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	@PostMapping("/users/add")
-	public User create(@RequestBody User user) {
-		return userService.save(user);
+	public ResponseEntity<?>  create(@RequestBody User user) {
+		try {
+			return ResponseEntity.ok(userService.save(user));
+		} catch (Exception e) {
+			logger.error("Error create >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 	@PostMapping("/users/update")
-	public User update(@RequestBody User user) {
-		return userService.update(user);				
+	public ResponseEntity<?>  update(@RequestBody User user) {
+		try {
+			return ResponseEntity.ok(userService.update(user));
+		} catch (Exception e) {
+			logger.error("Error update >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}				
 	}
 	
 	@PostMapping("/users/setRole")
-	public int setRole(@RequestBody User user) {
-		return userService.setRole(user);				
+	public ResponseEntity<?>  setRole(@RequestBody User user) {
+		try {
+			return ResponseEntity.ok(userService.setRole(user));
+		} catch (Exception e) {
+			logger.error("Error setRole >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}				
 	}
 	
 	@GetMapping("/users/add")
-	public List<User> listAllUserName() {
-		return userService.listAllUserName();
+	public ResponseEntity<?> listAllUserName() {
+		try {
+			return ResponseEntity.ok(userService.listAllUserName());
+		} catch (Exception e) {
+			logger.error("Error listAllUserName >> " + e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
 	}
 	
 }

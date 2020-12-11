@@ -9,35 +9,35 @@ import com.bookingbusticket.entity.User;
 import com.bookingbusticket.helper.Login;
 
 public interface UserService {
-	public User save(User entity);
+	public User save(User entity) throws Exception;
 
-	public void delete(Integer id);
+	public void delete(Integer id) throws Exception;
 
-	public User update(User entity);
+	public User update(User entity) throws Exception;
 
-	public List<User> findAll();
+	public List<User> findAll() throws Exception;
 
-	public User findById(String id);
+	public User findById(String id) throws Exception;
 
-	public User login(Login acc);
+	public User login(Login acc) throws Exception;
 
-	public User register(User entity);
+	public User register(User entity) throws Exception;
 
-	int setRole(User user);
+	int setRole(User user) throws Exception;
 
-	User checkUserName(String userName);
+	User checkUserName(String userName) throws Exception;
 
-	List<User> listAllUserName();
+	List<User> listAllUserName() throws Exception;
 
-	User getOne(int id);
+	User getOne(int id) throws Exception;
 
-	Page<User> getAllPagination(int pageIn, int size);
+	Page<User> getAllPagination(int pageIn, int size) throws Exception;
 
-	Page<User> filterByRolePagination(int roleId, int pageIn, int size);
+	Page<User> filterByRolePagination(int roleId, int pageIn, int size) throws Exception;
 
-	Page<User> findByUserNamePagination(String userName, Pageable pageable);
+	Page<User> findByUserNamePagination(String userName, Pageable pageable) throws Exception;
 
-	Page<User> findByEmailPagination(String email, Pageable pageable);
+	Page<User> findByEmailPagination(String email, Pageable pageable) throws Exception;
 
-	public Boolean forgotPassword(String email, String username);
+	public Boolean forgotPassword(String email, String username) throws Exception;
 }

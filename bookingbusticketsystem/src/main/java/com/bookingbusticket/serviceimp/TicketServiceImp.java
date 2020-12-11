@@ -31,26 +31,7 @@ public class TicketServiceImp implements TicketService {
 	}
 
 	@Override
-	public Ticket save(Ticket entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Ticket update(Ticket entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Ticket finfById(Integer id) {
-		// TODO Auto-generated method stub
 		return ticketRepository.findById(id).get();
 	}
 
@@ -83,14 +64,12 @@ public class TicketServiceImp implements TicketService {
 
 	@Override
 	public Iterable<Ticket> findByBusId(Integer busId) {
-		// TODO Auto-generated method stub
 		return ticketRepository.findByBusBusId(busId);
 	}
 
 	@Override
 	public Iterable<Ticket> findAllAvailableTicketOrSeat() {
-		// TODO Auto-generated method stub
-		return null;
+		return ticketRepository.findAvailableSeat();
 	}
 
 	@Override

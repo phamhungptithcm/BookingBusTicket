@@ -27,37 +27,18 @@ public class OrderServiceImp implements OrderService{
 	OrderStatusService orderStatusService;
 	
 	@Override
-	public Order save(Order entity) {
-		// TODO Auto-generated method stub
+	public Order save(Order entity) throws Exception{
 		return orderRepository.save(entity);
 	}
 
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public Order update(Order entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Order> findAll() {
-		// TODO Auto-generated method stub
+	public List<Order> findAll() throws Exception {
 		return orderRepository.findAll();
 	}
 
 	@Override
-	public Order finfById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Order purchase(Order o, Iterable<TicketDetail> ls) {
+	public Order purchase(Order o, Iterable<TicketDetail> ls) throws Exception{
 		Order order = new Order();
 		order.setAmount(o.getAmount());
 		order.setOrderDate(new Date());

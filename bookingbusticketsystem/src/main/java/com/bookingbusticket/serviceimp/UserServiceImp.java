@@ -2,10 +2,10 @@ package com.bookingbusticket.serviceimp;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -155,37 +155,14 @@ public class UserServiceImp implements UserService, UserDetailsService {
 		if(!email.equals(user.getEmail())) {
 			return false;
 		}
-		String newpass = this.randomPass();
+		String newpass = this.randomString(8,true,true);
 		mailer.send(email, "Forgot password for " + user.getUserName(), "New Password: " + newpass);
 		user.setPassword(newpass);
 		this.update(user);
 		return true;
 	}
-	public int rand(int min, int max) {
-        try {
-            Random rn = new Random();
-            int range = max - min + 1;
-            int randomNum = min + rn.nextInt(range);
-            return randomNum;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
-	public char randomCharacter(char stt) {
-        Random r = new Random();
-        char c = (char) (r.nextInt(26) + stt);
-        return c;
-    }
-	public String randomPass() {
-		String s1 = String.valueOf(this.rand(0, 10));
-		String s2 = String.valueOf(this.randomCharacter('a'));
-		String s3 = String.valueOf(this.randomCharacter('A'));
-		String s4 = String.valueOf(this.rand(2, 100));
-		String s5 = String.valueOf(this.randomCharacter('A'));
-		String s6 = String.valueOf(this.randomCharacter('a'));
-		String s7 = String.valueOf(this.rand(5, 100));
-		String s8 = String.valueOf(this.randomCharacter('A'));
-		return s1+s2+s3+s4+s5+s6+s7+s8;
+	
+	private String randomString(int length, boolean letter, boolean number) {
+		return RandomStringUtils.random(length, letter, number);
 	}
 }

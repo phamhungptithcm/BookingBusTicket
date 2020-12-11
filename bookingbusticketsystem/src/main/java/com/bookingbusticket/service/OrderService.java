@@ -6,15 +6,9 @@ import com.bookingbusticket.entity.Order;
 import com.bookingbusticket.entity.TicketDetail;
 
 public interface OrderService {
-	public Order save(Order entity);
+	public Order save(Order entity) throws Exception;
 
-	public void delete(Integer id);
-
-	public Order update(Order entity);
-
-	public List<Order> findAll();
-
-	public Order finfById(Integer id);
+	public List<Order> findAll() throws Exception;
 	
-	public Order purchase(Order order, Iterable<TicketDetail> ls);
+	public Order purchase(Order order, Iterable<TicketDetail> ls) throws Exception;
 }

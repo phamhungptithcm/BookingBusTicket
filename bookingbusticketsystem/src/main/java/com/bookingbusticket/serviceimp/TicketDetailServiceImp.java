@@ -83,12 +83,6 @@ public class TicketDetailServiceImp implements TicketDetailService{
 	}
 
 	@Override
-	public Page<TicketDetail> findByLastName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Iterable<TicketDetail> findTicketDetailByDepartureDate(Date date) {
 		return ticketDetailRepository.findAllByDepartureDate(date);
 	}
@@ -139,19 +133,19 @@ public class TicketDetailServiceImp implements TicketDetailService{
 	}
 	@Override
 	public Page<TicketDetail> findAllByStatus(int page, int size, boolean status) {
-		// TODO Auto-generated method stub
+
 		Pageable pageable = PageRequest.of(page, size);
 		return ticketDetailRepository.findAllByStatus(pageable,true);
 	}
 	@Override
 	public List<TicketDetail> findByStatus(boolean status) {
-		// TODO Auto-generated method stub
+
 		return ticketDetailRepository.findByStatus(true);
 	}
 
 	@Override
 	public void updateStatusByDepartureDateAndTicketId(Date date, int ticketId) {
-		// TODO Auto-generated method stub
+
 	TicketDetail ticketDetail = ticketDetailRepository.findByDepartureDateAndTicketTicketId(date, ticketId);
 	System.out.println(ticketDetail.getDepartureDate());
 	System.out.println(ticketDetail.getTicket().getTicketId());
@@ -165,13 +159,13 @@ public class TicketDetailServiceImp implements TicketDetailService{
 
 	@Override
 	public List<TicketDetail> findByStatusAndDepartureDate(boolean status, Date date) {
-		// TODO Auto-generated method stub
+
 		return ticketDetailRepository.findByStatusAndDepartureDate(status, date);
 	}
 
 	@Override
 	public TicketDetail findByDepartureDateAndTicketTicketId(Date date, int ticketId) {
-		// TODO Auto-generated method stub
+
 		return ticketDetailRepository.findByDepartureDateAndTicketTicketId(date, ticketId);
 	}
 
