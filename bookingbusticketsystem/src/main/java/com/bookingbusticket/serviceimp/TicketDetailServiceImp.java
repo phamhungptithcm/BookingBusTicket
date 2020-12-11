@@ -40,7 +40,6 @@ public class TicketDetailServiceImp implements TicketDetailService{
 
 	@Override
 	public TicketDetail update(TicketDetail entity) {
-		entity.setStatus(false);
 		return ticketDetailRepository.save(entity);
 	}
 

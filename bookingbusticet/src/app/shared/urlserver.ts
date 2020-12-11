@@ -1,5 +1,5 @@
 export class URLServer {
-    domain = 'http://localhost:8080';
+    domain = 'http://localhost:8069';
     userUrlFU = this.domain + '/user/manage';
     tripUrlFU = this.domain + '/user/trip';
     ticketUrlFU = this.domain + '/user/ticket';
