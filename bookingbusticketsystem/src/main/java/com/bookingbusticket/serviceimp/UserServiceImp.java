@@ -49,9 +49,12 @@ public class UserServiceImp implements UserService, UserDetailsService {
 
 	@Override
 	public User update(User entity) {
-		System.out.println(entity.getPassword());
-		entity.setPassword(encrypt.encode(entity.getPassword()));
-		System.out.println(entity.getPassword());
+		User user = this.findById(entity.getUserName());
+		if(!user.getPassword().equals("")) {
+			entity.setPassword(entity.getPassword());
+		} else {
+			entity.setPassword(encrypt.encode(entity.getPassword()));
+		}
 		return userRepositoty.save(entity);
 	}
 
