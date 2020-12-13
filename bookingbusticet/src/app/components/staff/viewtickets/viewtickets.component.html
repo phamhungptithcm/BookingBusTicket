@@ -1,24 +1,14 @@
 <div class="biggest-container">
-  <mat-form-field>
+<!--  <mat-form-field>
     <p class="form-title">Bus ID</p>
     <mat-select [(ngModel)]="busId" (ngModelChange)="onChange($event)">
       <mat-option *ngFor="let c of buses" #busId [value]="c.busId">{{c.busId}} </mat-option>
     </mat-select>
-  </mat-form-field>
-
-
-
-
-
-  <div class="alert alert-success">
-    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    <strong>Delete successfully!</strong>
-  </div>
-
+  </mat-form-field>-->
 </div>
 
 <div *ngIf="pagerShit">
-  <!-- <div class="text-center"> -->
+
   <!-- items being paged -->
   <table mat-table [dataSource]="bookedTickets" multiTemplateDataRows class="mat-elevation-z8" matSort>
 

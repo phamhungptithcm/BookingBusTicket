@@ -34,6 +34,23 @@ export class TripComponent implements OnInit {
   from: Province = new Province();
   to: Province = new Province();
   departureDate: Date = null;
+  listQuickFilter = ["Pickup after 6 PM",
+  "Drop before 11 AM",
+  "The most seats"
+  ];
+  listPrice = ["50.000 VNĐ - 150.000 VNĐ", 
+"150.000 VNĐ - 250.000 VNĐ",
+"250.000 VNĐ - 400.000 VNĐ",
+"400.000 VNĐ - 600.000 VNĐ",
+"600.000 VNĐ - 1.000.000 VNĐ",
+"1.000.000 VNĐ - 2.000.000 VNĐ"
+];
+listPickupTime = [
+  "Morning(6 AM to 12 PM)",
+  "Afternoon(12 PM to 6 PM)",
+  "Evening(6 PM to 12 AM)",
+  "Night(12 AM to 6 AM)"
+]
   public getTrip(): void {
     this.route.params.subscribe(id => {
       this.tripService.findByRouteId(id.routeId).subscribe(data => {

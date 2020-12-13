@@ -82,6 +82,7 @@ export class LoginComponent extends SweetAlert implements OnInit {
     if (username !== '' && password !== '') {
       this.userService.loginUser(account).subscribe(data => {
         this.curUser = data;
+        console.log(data);
         if (data !== null) {
           sessionStorage.setItem('user', JSON.stringify(this.curUser));
           if (remember === true) {

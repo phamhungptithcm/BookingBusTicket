@@ -29,5 +29,17 @@
   "Female": "Female",
   "Male": "Male",
   "forgot_password": "Forgot password?",
-  "remember_me": "Remember me?"
+  "remember_me": "Remember me?",
+  "stt": "Stt",
+  "fullname": "FullName",
+  "age": "Age",
+  "gender": "Gender",
+  "seat_number": "Seat Number",
+  "departure_date": "Departure Date",
+  "status": "Status",
+  "quick_filter" : "Quick Filters",
+  "Price": "Price",
+  "Pickup Time": "Pickup Time",
+  "Drop Time": "Drop Time",
+  "Select Seats": "Select Seats"
 }
