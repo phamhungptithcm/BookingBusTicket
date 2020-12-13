@@ -18,7 +18,7 @@ import { NgProgress } from 'ngx-progressbar';
   styleUrls: ['./searching.component.css']
 })
 export class SearchingComponent extends SweetAlert implements OnInit {
-
+  keyFrom;
   constructor(
     private provinceService: ProvinceServiceImp,
     private router: Router,

@@ -2,31 +2,61 @@
   <div class="uk-modal-dialog">
     <button class="uk-modal-close-default" type="button" uk-close></button>
     <div class="uk-modal-header">
-      <h2 class="uk-modal-title uk-text-center">Log in</h2>
+      <h2 class="uk-modal-title uk-text-center">{{ "login" | transloco }}</h2>
     </div>
     <div class="uk-modal-body">
-      <form class="example-form"  [formGroup]="loginForm">
+      <form class="example-form" [formGroup]="loginForm">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="UserName" formControlName="userName" [value]="uck">
+          <input
+            matInput
+            placeholder="UserName"
+            formControlName="userName"
+            [value]="uck"
+          />
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password" [value]="pck">
+          <input
+            matInput
+            placeholder="Password"
+            type="password"
+            formControlName="password"
+            [value]="pck"
+          />
         </mat-form-field>
         <div uk-grid>
           <div class="uk-width-1-2">
-            <label><input class="uk-checkbox" formControlName="remember" value="true" type="checkbox"> Remember me?</label>
+            <label
+              ><input
+                class="uk-checkbox"
+                formControlName="remember"
+                value="true"
+                type="checkbox"
+              />
+              {{ "remember_me" | transloco }}</label
+            >
           </div>
           <div class="uk-width-1-2 uk-text-right">
-            <a href="#modal-forgot" uk-toggle>Forgot password?</a>
+            <a href="#modal-forgot" uk-toggle>{{
+              "forgot_password" | transloco
+            }}</a>
           </div>
         </div>
         <div uk-grid>
           <div class="uk-width-1-2">
-            <button class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" (click)="login()">Log in</button>
+            <button
+              class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+              (click)="login()"
+            >
+              {{ "login" | transloco }}
+            </button>
           </div>
           <div class="uk-width-1-2">
-            <a class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" href="#modal-signup" uk-toggle>Sign
-              up</a>
+            <a
+              class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"
+              href="#modal-signup"
+              uk-toggle
+              >{{ "signup" | transloco }}</a
+            >
           </div>
         </div>
       </form>

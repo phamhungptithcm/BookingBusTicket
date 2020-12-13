@@ -1,89 +1,142 @@
 <div id="modal-signup" uk-modal>
-    <div class="uk-modal-dialog">
-        <button class="uk-modal-close-default" type="button" uk-close></button>
-        <div class="uk-modal-header">
-            <h5 class="uk-modal-title uk-text-center">Sign up with BookingBusTicket</h5>
-        </div>
-        <div class="uk-modal-body">
-            <form class="example-form" [formGroup]="signup">
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="UserName" formControlName="userName" required>
-                    <!-- <span class="error" *ngIf="signup.controls.userName?.errors?.required && signup.get('userName').dirty">Please insert username! </span> -->
-                    <mat-error *ngIf="signup.hasError('required', 'userName')">
-                        Please enter your username
-                    </mat-error>
-                    <mat-error *ngIf="signup.hasError('pattern', 'userName')">
-                        Invalid username
-                    </mat-error>
-                    <mat-error *ngIf="signup.hasError('minlength', 'userName')">
-                        Username must be at least 3 characters long
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="FullName" formControlName="fullName" required>
-                    <mat-error *ngIf="signup.hasError('required', 'fullName')">
-                        Please enter your fullname
-                    </mat-error>                
-                    <mat-error *ngIf="signup.hasError('minlength', 'fullName')">
-                        Username must be at least 5 characters long
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput [matDatepicker]="picker" disabled formControlName="dateOfBirth" placeholder="Date Of Birth">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker disabled="false"></mat-datepicker>
-                </mat-form-field>
-                <mat-radio-group formControlName="gender">
-                    <mat-radio-button value="True" style="margin-right: 30px;">Male</mat-radio-button>
-                    <mat-radio-button value="False">Female</mat-radio-button>
-                </mat-radio-group>
-                <mat-form-field class="example-full-width">
-                    <input matInput type="password" placeholder="Password" formControlName="password" required>
-                    <mat-error *ngIf="signup.hasError('required', 'password')">
-                        Please enter your new password
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password"
-                        required [errorStateMatcher]="matcher">
-                    <mat-error *ngIf="signup.hasError('notSame')">
-                        Passwords do not match
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Phone Number" formControlName="phoneNum" required>
-                    <mat-error *ngIf="signup.hasError('required', 'phoneNum')">
-                        Please enter your phone
-                    </mat-error>                
-                    <mat-error *ngIf="signup.hasError('pattern', 'phoneNum')">
-                        Invalid phone number
-                    </mat-error>
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" formControlName="email" required>
-                    <mat-error *ngIf="signup.hasError('required', 'email')">
-                        Please enter your email
-                    </mat-error>                
-                    <mat-error *ngIf="signup.hasError('email', 'email')">
-                        Invalid email
-                    </mat-error>
-                </mat-form-field>
-                <div uk-grid>
-                    <div class="uk-width-1-2">
-                        <button class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom" [disabled]="signup.invalid"
-                            (click)="signupForm()">Sign
-                            up</button>
-                    </div>
-                    <div class="uk-width-1-2">
-                        <a class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" href="#modal-login"
-                            uk-toggle>Log in</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="uk-modal-footer uk-text-right">
-
-        </div>
+  <div class="uk-modal-dialog">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <div class="uk-modal-header">
+      <h5 class="uk-modal-title uk-text-center">
+        {{ "sign_up_title" | transloco }}
+      </h5>
     </div>
+    <div class="uk-modal-body">
+      <form class="example-form" [formGroup]="signup">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="UserName"
+            formControlName="userName"
+            required
+          />
+          <!-- <span class="error" *ngIf="signup.controls.userName?.errors?.required && signup.get('userName').dirty">Please insert username! </span> -->
+          <mat-error *ngIf="signup.hasError('required', 'userName')">
+            {{ "please_enter_username" | transloco }}
+          </mat-error>
+          <mat-error *ngIf="signup.hasError('pattern', 'userName')">
+            {{ "invalid_username" | transloco }}
+          </mat-error>
+          <mat-error *ngIf="signup.hasError('minlength', 'userName')">
+            {{ "username_min_length" | transloco }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="FullName"
+            formControlName="fullName"
+            required
+          />
+          <mat-error *ngIf="signup.hasError('required', 'fullName')">
+            {{ "fullname_not_empty" | transloco }}
+          </mat-error>
+          <mat-error *ngIf="signup.hasError('minlength', 'fullName')">
+            {{ "fullname_min_length" | transloco }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            disabled
+            formControlName="dateOfBirth"
+            placeholder="Date Of Birth"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker disabled="false"></mat-datepicker>
+        </mat-form-field>
+        <mat-radio-group formControlName="gender">
+          <mat-radio-button value="True" style="margin-right: 30px">{{
+            "Male" | transloco
+          }}</mat-radio-button>
+          <mat-radio-button value="False">{{
+            "Female" | transloco
+          }}</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+            required
+          />
+          <mat-error *ngIf="signup.hasError('required', 'password')">
+            {{ "please_enter_password" | transloco }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            type="password"
+            formControlName="confirmPassword"
+            placeholder="Confirm Password"
+            required
+            [errorStateMatcher]="matcher"
+          />
+          <mat-error *ngIf="signup.hasError('notSame')">
+            {{ "password_not_match" | transloco }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Phone Number"
+            formControlName="phoneNum"
+            required
+          />
+          <mat-error *ngIf="signup.hasError('required', 'phoneNum')">
+            {{ "please_enter_phone" | transloco }}
+          </mat-error>
+          <mat-error *ngIf="signup.hasError('pattern', 'phoneNum')">
+            {{ "invalid_phone_number" | transloco }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Email"
+            formControlName="email"
+            required
+          />
+          <mat-error *ngIf="signup.hasError('required', 'email')">
+            {{ "please_enter_email" | transloco }}
+          </mat-error>
+          <mat-error *ngIf="signup.hasError('email', 'email')">
+            {{ "invalid_email" | transloco }}
+          </mat-error>
+        </mat-form-field>
+        <div uk-grid>
+          <div class="uk-width-1-2">
+            <button
+              class="uk-button uk-button-danger uk-width-1-1 uk-margin-small-bottom"
+              [disabled]="signup.invalid"
+              (click)="signupForm()"
+            >
+              {{ "signup" | transloco }}
+            </button>
+          </div>
+          <div class="uk-width-1-2">
+            <a
+              class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom"
+              href="#modal-login"
+              uk-toggle
+              >{{ "login" | transloco }}</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="uk-modal-footer uk-text-right"></div>
+  </div>
 </div>

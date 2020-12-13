@@ -1,38 +1,78 @@
-<div id="toggle-searching" class="uk-child-width-1-1@s uk-text-center toggle" uk-grid>
+<div
+  id="toggle-searching"
+  class="uk-child-width-1-1@s uk-text-center toggle"
+  uk-grid
+>
   <div>
     <div class="uk-background-default uk-padding uk-panel">
-      <h3>Book Bus Ticket Across VietNam</h3>
-      <form  class="example-form">
+      <h3>{{ "search_title" | transloco }}</h3>
+      <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input aria-label="From" matInput [(ngModel)]="keyFrom" (ngModelChange)="onChangeFrom()" [formControl]="fromControl"  [matAutocomplete]="from"  required>
-          <mat-placeholder>From</mat-placeholder>
+          <input
+            [attr.aria-label]="'from' | transloco"
+            matInput
+            [(ngModel)]="keyFrom"
+            (ngModelChange)="onChangeFrom()"
+            [formControl]="fromControl"
+            [matAutocomplete]="from"
+            required
+          />
+          <mat-placeholder>{{ "from" | transloco }}</mat-placeholder>
           <mat-autocomplete #from="matAutocomplete" [displayWith]="displayFrom">
-            <mat-option *ngFor="let from of filteredFroms | async" [value]="from" (click)="findAllTo(from)">
-              {{from.provinceName}}
+            <mat-option
+              *ngFor="let from of filteredFroms | async"
+              [value]="from"
+              (click)="findAllTo(from)"
+            >
+              {{ from.provinceName }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input  aria-label="To" matInput [formControl]="toControl" [(ngModel)]="keyTo" (ngModelChange)="keyTo"  [matAutocomplete]="to" required>
-          <mat-placeholder>To</mat-placeholder>
+          <input
+            [attr.aria-label]="'to' | transloco"
+            matInput
+            [formControl]="toControl"
+            [(ngModel)]="keyTo"
+            (ngModelChange)="(keyTo)"
+            [matAutocomplete]="to"
+            required
+          />
+          <mat-placeholder>{{ "to" | transloco }}</mat-placeholder>
           <mat-autocomplete #to="matAutocomplete" [displayWith]="displayTo">
-            <mat-option *ngFor="let to of filteredTos | async" [value]="to" (click)="findRoute(to.provinceId)">
-              {{to.provinceName}}
+            <mat-option
+              *ngFor="let to of filteredTos | async"
+              [value]="to"
+              (click)="findRoute(to.provinceId)"
+            >
+              {{ to.provinceName }}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
         <mat-form-field>
-          <input matInput id="iddate" [min]="minDate" [matDatepicker]="picker" disabled [value]="curDate" class="hp-departuredate"
-            required>
-            <mat-placeholder>Departure Date</mat-placeholder>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input
+            matInput
+            id="iddate"
+            [min]="minDate"
+            [matDatepicker]="picker"
+            disabled
+            [value]="curDate"
+            class="hp-departuredate"
+            required
+          />
+          <mat-placeholder>{{ "departure_date" | transloco }}</mat-placeholder>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker #picker disabled="false"></mat-datepicker>
         </mat-form-field>
         <div>
-          <button mat-raised-button color="warn" (click)="clickSearching()">Search</button>
+          <button mat-raised-button color="warn" (click)="clickSearching()">
+            {{'search' |transloco}}
+          </button>
         </div>
       </form>
-
     </div>
   </div>
 </div>

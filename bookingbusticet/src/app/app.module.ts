@@ -99,6 +99,7 @@ import { AdminGuard } from './authorization/admin/admin.guard';
 import { CookieService } from 'ngx-cookie-service';
 import { ForgotComponent } from './shared/forgot/forgot/forgot.component';
 import { NgProgressModule } from 'ngx-progressbar';
+import { TranslocoRootModule } from './transloco/transloco-root.module';
 // Configs
 // export function getAuthServiceConfigs() {
 //   let config = new AuthServiceConfig(
@@ -206,7 +207,8 @@ import { NgProgressModule } from 'ngx-progressbar';
     MatNativeDateModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
-    NgProgressModule 
+    NgProgressModule,
+    TranslocoRootModule 
   ],
   providers: [
     // {
