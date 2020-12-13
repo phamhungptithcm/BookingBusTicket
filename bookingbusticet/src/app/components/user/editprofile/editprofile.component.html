@@ -1,44 +1,49 @@
 <div class="uk-container" style="margin-bottom: 50px; margin-top: 50px;">
   <legend class="uk-legend uk-text-center" style="margin-bottom: 30px;">Edit your information</legend>
-  <form class="uk-grid-small" uk-grid>
+  <form class="uk-grid-small" uk-grid [formGroup]="formUser">
     <div class="uk-width-1-2@s">
       <label class="uk-form-label" for="username">UserName</label>
-      <input class="uk-input" id="username" placeholder="Enter your username" [value]="curUser.userName" disabled>
+      <input class="uk-input" id="username" placeholder="Enter your username" 
+      formControlName="userName"
+      disabled>
     </div>
     <div class="uk-width-1-2@s">
       <label class="uk-form-label" for="fullname">Fullname</label>
-      <input class="uk-input" id="fullname" placeholder="Enter your fullname" [value]="curUser.fullName">
+      <input class="uk-input" id="fullname" placeholder="Enter your fullname"
+      formControlName="fullName"
+      >
     </div>
     <div class="uk-width-1-2@s">
       <mat-form-field style="width: 100%;">
-        <input matInput [matDatepicker]="picker" id="date" placeholder="Date Of Birth" [value]="curUser.dateOfBirth">
+        <input matInput [matDatepicker]="picker" id="date" placeholder="Date Of Birth" 
+        formControlName="dateOfBirth">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </div>
-    <div class="uk-width-1-2@s" id="gender">
-      <label><input class="uk-radio"  type="radio" name="gender" value="true" checked> Male</label>
-      <label><input class="uk-radio" type="radio" name="gender" value="false"> Female</label>
+    <div class="uk-width-1-2@s gender" id="gender">
+      <label><input class="uk-radio"  type="radio" [value]="true" formControlName="gender" > Male</label>
+      <label><input class="uk-radio" type="radio" [value]="false" formControlName="gender" > Female</label>
     </div>
     <div class="uk-width-1-2@s">
-      <label class="uk-form-label" for="username">Password</label>
-      <input class="uk-input" type="password" id="password" placeholder="Enter your password">
+      <label class="uk-form-label" for="password">Password</label>
+      <input class="uk-input" type="password" id="password" placeholder="Enter your password" formControlName="password" >
     </div>
     <div class="uk-width-1-2@s">
-      <label class="uk-form-label" for="fullname">Confirm Password</label>
-      <input class="uk-input" type="password" id="cfpassword" placeholder="Enter your confirm password">
+      <label class="uk-form-label" for="re-password">Confirm Password</label>
+      <input class="uk-input" type="password" id="re-password" placeholder="Enter your confirm password" formControlName="rePassword" >
     </div>
     <div class="uk-width-1-2@s">
       <label class="uk-form-label" for="phone">Phone Number</label>
-      <input class="uk-input" id="phone" placeholder="Enter your phone number" [value]="curUser.phoneNum">
+      <input class="uk-input" id="phone" placeholder="Enter your phone number" formControlName="phoneNum">
     </div>
     <div class="uk-width-1-2@s">
       <label class="uk-form-label" for="email">Email</label>
-      <input class="uk-input" type="email" id="email" placeholder="Enter your email" [value]="curUser.email">
+      <input class="uk-input" type="email" id="email" placeholder="Enter your email" formControlName="email" disabled >
     </div>
     <div class="uk-width-1-1@s">
       <label class="uk-form-label" for="address">Address</label>
-      <input class="uk-input" id="address" placeholder="Enter your address" [value]="curUser.address">
+      <input class="uk-input" id="address" placeholder="Enter your address" formControlName="address">
     </div>
     <div class="uk-margin uk-text-center">
       <button class="uk-button uk-button-primary" (click)="updateUser()">Update</button>

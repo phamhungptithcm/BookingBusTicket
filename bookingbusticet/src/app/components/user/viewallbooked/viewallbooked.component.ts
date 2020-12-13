@@ -11,6 +11,7 @@ import { User } from 'src/app/models/user';
 export class ViewallbookedComponent implements OnInit {
   ticketDetails: TicketDetail[];
   curUser: User;
+  ticketSelected: TicketDetail;
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -22,5 +23,8 @@ export class ViewallbookedComponent implements OnInit {
       data => {
       this.ticketDetails = data;
       });
+  }
+  selectTicket(ticket: TicketDetail) {
+    this.ticketSelected = ticket;
   }
 }

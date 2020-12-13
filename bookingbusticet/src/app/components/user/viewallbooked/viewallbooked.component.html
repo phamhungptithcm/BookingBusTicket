@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let t of ticketDetails">
+      <tr *ngFor="let t of ticketDetails"  uk-toggle="target: #my-id" (click)="selectTicket(t)">
         <td>{{t.ticketDetailId}}</td>
         <td>{{t.firstName}} {{t.lastName}}</td>
         <td>{{t.age}}</td>
@@ -21,9 +21,35 @@
         </td>
         <td>{{t.numSeat}}</td>
         <td>{{t.departureDate}}</td>
-        <td><span class="uk-label uk-label-success hp-label-success" *ngIf="">Canceled</span></td>
+        <td>
+          <span class="uk-label uk-label-success hp-label-success" *ngIf="t.status">Success</span>
+          <span class="uk-label uk-label-success hp-label-danger" *ngIf="!t.status">Canceled</span>
+        
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 <app-footer></app-footer>
+
+<div id="my-id" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+  <h2 class="uk-modal-title">Bus information</h2>
+    <table class="uk-table uk-table-small  uk-table-hover uk-table-divider">
+      <thead>
+          <tr>
+              <th>Bus Name</th>
+              <th>Bus License Plate</th>
+              <th>Num Seat</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{ticketSelected.ticket.bus.busName}}</td>
+              <td>{{ticketSelected.ticket.bus.busLicensePlate}}</td>
+              <td>{{ticketSelected.ticket.bus.numSeat}}</td>
+          </tr>
+      </tbody>
+  </table>
+  </div>
+</div>

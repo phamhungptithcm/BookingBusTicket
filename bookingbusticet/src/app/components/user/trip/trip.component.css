@@ -1,7 +1,7 @@
 .uk-navbar-container {
     color: white;
     background: #16355C;
-    height: 40px;
+    height: fit-content;
     padding-left: 20%;
 }
 .uk-navbar-container ul li a{
