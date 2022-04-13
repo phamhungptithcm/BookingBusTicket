@@ -26,7 +26,7 @@ public class SwaggerConfig {
     }
 
 	private ApiInfo getApiInfo() {
-		Contact contact = new Contact("example.com", "https://swagger.io", "dinhnv5@fsoft.com.vn");
+		Contact contact = new Contact("example.com", "https://swagger.io", "");
 		return new ApiInfoBuilder().title("Spring Boot Swagger").description("Demo Spring Boot Swagger")
 				.version("2.8.0").license("Apache 2.0").licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
 				.contact(contact).build();
